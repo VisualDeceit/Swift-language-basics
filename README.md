@@ -1,2 +1,1 @@
-# Swift-language-basics
-Основы языка Swift
+# Основы языка Swift
