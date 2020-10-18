@@ -92,6 +92,7 @@ func fibOpt(_ n: Int) -> Int {
     }
 }
 
+
 func generateFibArray(_ length: Int) -> [Int]{
     
     var array = [Int]()
@@ -119,7 +120,6 @@ generateFibArray(50)
 func generatePrimeNumberArray(_ lenght: Int) -> [Int]{
     
     var sieve = Array(repeating: true, count: lenght)
-    sieve.count
     
     for p in 2...lenght where p*p < lenght{
         if sieve[p] == true{
@@ -138,6 +138,32 @@ func generatePrimeNumberArray(_ lenght: Int) -> [Int]{
 
     return primes
 }
+
+func findPrimeNumbers(_ inputArray: inout [Int]){
+    var primes = [Int]()
+    inputArray.removeFirst()
+    while let p = inputArray.first {
+    primes.append(p)
+    inputArray = inputArray.filter{ $0 % p != 0}
+}
+
+inputArray = primes
+}
+
+func findPrimeNumbers2(_ inputArray: inout [Int]){
+    var primes = [Int]()
+    inputArray.forEach{number in
+        if number > 1 && (2...number).filter({number % $0 == 0}).count == 1 {
+            primes.append(number)
+        }
+    }
+    inputArray = primes
+    "inputArray.forEach{number in if number>1 && (2...number).filter({number%$0==0}).count==1{primes.append(number)}};inputArray=primes".count
+}
+
+var arr1 = Array(1...100)
+
+findPrimeNumbers2(&arr1)
 generatePrimeNumberArray(100)
 
 
