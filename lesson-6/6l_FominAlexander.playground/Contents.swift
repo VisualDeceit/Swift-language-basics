@@ -113,7 +113,17 @@ struct Queue<T>  {
         }
         return tmpArray
     }
-        
+    
+    func printElements(element: (T) -> String){
+        var result = [String]()
+        queue.forEach { (item) in
+            result.append(element(item))
+        }
+        print(result)
+       
+    }
+    
+ 
     subscript(index: Int) -> T? {
         
         if index > self.queue.count {
@@ -121,10 +131,6 @@ struct Queue<T>  {
         } else {
             return self.queue[index]
         }
-    }
-
-    func printAll() {
-        print(queue)
     }
     
 }
@@ -148,15 +154,24 @@ queue.push(doc2)
 queue.push(driver2)
 queue.push(progr1)
 
-queue.printAll()
+queue.printElements { (value) -> String in
+    value.name + " \(value.age)"
+}
 
 print(queue.myFilter { $0.age <= 30 })
 
+print(queue.myFilter { (value) -> Bool in
+    value.age > 30
+})
+
 
 queue.pop()
-queue.printAll()
+
+queue.printElements { (value) -> String in
+    value.name + " \(value.age)"
+}
 
 print(queue[2]) //Driver
 print(queue[10]) //nil
 
-//queue.printAllMembers()
+
